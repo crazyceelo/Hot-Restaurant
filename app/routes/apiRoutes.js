@@ -10,10 +10,18 @@ module.exports = (app,path)=>{
     });
 
     app.post("/api/tables", function(req, res){
-        var newReservation = req.params.body;
-        // if(data.tables.length > 5){
-            
-        // }
+        var newReservation = req.body;
+        console.log(newReservation);
+        console.log(data.tables.length);
+        if(data.tables.length < 5){
+            data.tables.push(newReservation);
+            res.end("true");
+        }
+        else{
+            data.waitlist.push(newReservation);
+            res.end("false");
+        }
+        console.log(data.tables.length);
     });
         
     
